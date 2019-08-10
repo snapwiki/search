@@ -8,23 +8,27 @@ function handleSubmit(event) {
     // prevent page from reloading when form is submitted
   event.preventDefault();
   // get the value of the input field
-  const input = document.querySelector('.searchForm-input').value;
+  const input = document.querySelector('.search-input').value;
   // remove whitespace from the input
   const searchQuery = input.trim();
   // call `fetchResults` and pass it the `searchQuery`
   fetchResults(searchQuery);
-  
-  // test getting images
-  fetchImage(searchQuery);
+
 }
 
 function fetchImage(searchQuery){
-  // http://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=India
-  const endpoint = `https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=India&origin=*`;
+  const endpoint = `https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=${searchQuery}&origin=*`;
     fetch(endpoint)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        const result = data.query.pages;
+        console.log('result', result);
+        const id = Object.keys(result)[0];
+        if(id !== -1){
+          const imgURL = result[id].original.source;
+          console.log(imgURL); 
+          displayImage(imgURL);
+        }
       })};
 
 function fetchResults(searchQuery) {
@@ -34,9 +38,16 @@ function fetchResults(searchQuery) {
   		.then(data => {
   	  	const results = data.query.search;
         console.log(results);
+        fetchImage(searchQuery);
         displayResults(results);
 		})
     .catch(() => console.log('An error occurred'));
+}
+
+function displayImage(imageURL){
+  const searchResults = document.querySelector('.searchResults');
+  searchResults.insertAdjacentHTML('beforeend',
+                                  `<img src="${imageURL}"/>`);
 }
 
 function displayResults(results) {
@@ -45,19 +56,21 @@ function displayResults(results) {
   // Remove all child elements
   searchResults.innerHTML = '';
   // Loop over results array
-  results.forEach(result => {
-   const url = encodeURI(`https://en.wikipedia.org/wiki/${result.title}`);
+    const result = results[0];
+    const url = encodeURI(`https://en.wikipedia.org/wiki/${result.title}`);
 
-   searchResults.insertAdjacentHTML('beforeend',
+     searchResults.insertAdjacentHTML('beforeend',
       `<div class="resultItem">
         <h3 class="resultItem-title">
           <a href="${url}" target="_blank" rel="noopener">${result.title}</a>
         </h3>
         <span class="resultItem-snippet">${result.snippet}</span><br>
-        <a href="${url}" class="resultItem-link" target="_blank" rel="noopener">${url}</a>
       </div>`
     );
-  });
+}
+
+const saveSearch = (searchQuery) => {
+  
 }
 
 

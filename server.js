@@ -5,12 +5,6 @@
 const express = require('express');
 const app = express();
 
-// airtable stuff
-var Airtable = require('airtable');
-var base = new Airtable({
-  apiKey: process.env.AIRTABLE_API_KEY,
-}).base(process.env.AIRTABLE_BASE_ID);
-
 // when user enters in query, trigger this function
 // use the wikipedia api to get the name from the url
 // get the date and time

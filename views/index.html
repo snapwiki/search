@@ -1,16 +1,6 @@
-<!-- This is a static file -->
-<!-- served from your routes in server.js -->
-
-<!-- You might want to try something fancier: -->
-<!-- html/nunjucks docs: https://mozilla.github.io/nunjucks/ -->
-<!-- pug: https://pugjs.org/ -->
-<!-- haml: http://haml.info/ -->
-<!-- hbs(handlebars): http://handlebarsjs.com/ -->
-
-<!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>TIL</title>
+    <title>Wikipedia Search Starter</title>
     <meta name="description" content="A cool thing made with Glitch">
     <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
     <meta charset="utf-8">
@@ -27,20 +17,20 @@
   <body>
     <header>
       <h1>
-        TIL
+        Wikipedia Search Starter
       </h1>
+      <p>
+        Enter a search term and we'll display the first wikipedia search result
+      </p>
     </header>
 
     <main>
       
       <form class="searchForm">
-        <input type="search" class="searchForm-input">
-        <button type="submit" class="icon searchIcon">
-          <img src="https://image.ibb.co/cpG8zk/search.png" alt="Magnifying Glass Icon">
+        <input type="search" class="search-input">
+        <button type="submit">
+          Search
         </button>
-        <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank" rel="noopener" class="icon randomIcon">
-          <img src="https://image.ibb.co/fR5OX5/random.png" alt="Shuffle Icon">
-        </a>
       </form>
 
     <section class="searchResults"></section>
