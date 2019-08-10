@@ -59,8 +59,8 @@ function displayResults(results) {
   });
 }
 
-const form = document.querySelector('.searchForm');
-form.addEventListener('submit', handleSubmit);
+// const form = document.querySelector('.searchForm');
+// form.addEventListener('submit', handleSubmit);
 
 // // our default array of dreams
 // const dreams = [

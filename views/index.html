@@ -22,7 +22,7 @@
     
     <!-- import the webpage's client-side javascript file -->
     <script src="/client.js" defer></script>
-    <script src="http://okfnlabs.org/wikipediajs/wikipedia.js"></script>
+    <script src="/wikipedia.js"></script>
   </head>
   <body>
     <header>
@@ -33,16 +33,12 @@
 
     <main>
       
-      <form>
+      <form class="searchForm">
         <input class="url-field" name="link" type="text" maxlength="100" placeholder="Link" aria-labelledby="submit-link">
         <button type="submit" id="submit-dream">Submit Link</button>
       </form>
       
-    <header class="searchForm-container">
-
-      <img src="https://image.ibb.co/e6vOFQ/wikipedia.png" alt="Wikipedia Logo">
-
-      <form class="searchForm">
+<!--       <form class="searchForm">
         <input type="search" class="searchForm-input">
         <button type="submit" class="icon searchIcon">
           <img src="https://image.ibb.co/cpG8zk/search.png" alt="Magnifying Glass Icon">
@@ -50,9 +46,7 @@
         <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank" rel="noopener" class="icon randomIcon">
           <img src="https://image.ibb.co/fR5OX5/random.png" alt="Shuffle Icon">
         </a>
-      </form>
-
-    </header>
+      </form> -->
 
     <section class="searchResults"></section>
 
@@ -72,5 +66,28 @@
     <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
     <script src="https://button.glitch.me/button.js"></script>
 
+    <script>
+      const form = document.querySelector('.searchForm');
+      form.addEventListener('submit', handleSubmit);
+      
+      const show = () => {
+        console.log('hi');
+      }
+      
+      function handleSubmit(event){
+        event.preventDefault();
+        
+        var info = WIKIPEDIA.getData('http://en.wikipedia.org/wiki/Invasion_of_Normandy');
+        console.log(info);
+        const url = document.querySelector('.url-field').value;
+        console.log(url);
+        WIKIPEDIA.getData(info, show, (error) => {
+          console.log(error);
+        });
+        // var info = WIKIPEDIA.getData(url);
+        // console.log(info);
+      }
+      
+    </script>
   </body>
 </html>
