@@ -10,9 +10,20 @@ function handleSubmit(event) {
   const searchQuery = input.trim();
   // call `fetchResults` and pass it the `searchQuery`
   fetchResults(searchQuery);
+  
+  // test getting images
+  fetchImage();
+  
 }
 
-function fetchImage()
+function fetchImage(){
+    fetch("https://en.wikipedia.org/w/api.php?&origin=*&action=opensearch&search=Belgium&limit=5")
+      .then(function(resp) {
+        console.log(resp);
+        return resp.json()
+      }).then(function(data) {
+          console.log(data);
+      })};
 
 function fetchResults(searchQuery) {
 	  const endpoint = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${searchQuery}`;
@@ -20,7 +31,6 @@ function fetchResults(searchQuery) {
   		.then(response => response.json())
   		.then(data => {
   	  	const results = data.query.search;
-        console.log(results);
         displayResults(results);
 		})
     .catch(() => console.log('An error occurred'));
