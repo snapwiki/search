@@ -22,6 +22,7 @@
     
     <!-- import the webpage's client-side javascript file -->
     <script src="/client.js" defer></script>
+    <script src="http://okfnlabs.org/wikipediajs/wikipedia.js"></script>
   </head>
   <body>
     <header>
@@ -33,7 +34,7 @@
     <main>
       
       <form>
-        <input name="dream" type="text" maxlength="100" placeholder="Link" aria-labelledby="submit-link">
+        <input class="url-field" name="link" type="text" maxlength="100" placeholder="Link" aria-labelledby="submit-link">
         <button type="submit" id="submit-dream">Submit Link</button>
       </form>
       

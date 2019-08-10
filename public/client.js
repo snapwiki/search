@@ -1,23 +1,25 @@
 // client-side js
 // run by the browser each time your view template is loaded
 
-function handleSubmit(event) {
-    // prevent page from reloading when form is submitted
-  event.preventDefault();
-  // get the value of the input field
-  const input = document.querySelector('.searchForm-input').value;
-  // remove whitespace from the input
-  const searchQuery = input.trim();
-  // call `fetchResults` and pass it the `searchQuery`
-  fetchResults(searchQuery);
-  
-  // test getting images
-  fetchImage();
-  
-}
 
-function fetchImage(){
-    fetch("https://en.wikipedia.org/w/api.php?&origin=*&action=opensearch&search=Belgium&limit=5")
+
+
+// function handleSubmit(event) {
+//     // prevent page from reloading when form is submitted
+//   event.preventDefault();
+//   // get the value of the input field
+//   const input = document.querySelector('.searchForm-input').value;
+//   // remove whitespace from the input
+//   const searchQuery = input.trim();
+//   // call `fetchResults` and pass it the `searchQuery`
+//   fetchResults(searchQuery);
+  
+//   // test getting images
+//   fetchImage(searchQuery);
+// }
+
+function fetchImage(searchQuery){
+    fetch(`http://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=India`)
       .then(function(resp) {
         console.log(resp);
         return resp.json()
