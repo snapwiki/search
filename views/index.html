@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Welcome to Glitch!</title>
+    <title>TIL</title>
     <meta name="description" content="A cool thing made with Glitch">
     <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
     <meta charset="utf-8">
@@ -36,6 +36,26 @@
         <input name="dream" type="text" maxlength="100" placeholder="Link" aria-labelledby="submit-link">
         <button type="submit" id="submit-dream">Submit Link</button>
       </form>
+      
+    <header class="searchForm-container">
+
+      <img src="https://image.ibb.co/e6vOFQ/wikipedia.png" alt="Wikipedia Logo">
+
+      <form class="searchForm">
+        <input type="search" class="searchForm-input">
+        <button type="submit" class="icon searchIcon">
+          <img src="https://image.ibb.co/cpG8zk/search.png" alt="Magnifying Glass Icon">
+        </button>
+        <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank" rel="noopener" class="icon randomIcon">
+          <img src="https://image.ibb.co/fR5OX5/random.png" alt="Shuffle Icon">
+        </a>
+      </form>
+
+    </header>
+
+    <section class="searchResults"></section>
+
+  
       
       <section class="dreams">
         <ul id="dreams"></ul>
