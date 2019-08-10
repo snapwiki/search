@@ -1,30 +1,30 @@
 // client-side js
 // run by the browser each time your view template is loaded
 
+const form = document.querySelector('.searchForm');
+form.addEventListener('submit', handleSubmit);
 
-
-
-// function handleSubmit(event) {
-//     // prevent page from reloading when form is submitted
-//   event.preventDefault();
-//   // get the value of the input field
-//   const input = document.querySelector('.searchForm-input').value;
-//   // remove whitespace from the input
-//   const searchQuery = input.trim();
-//   // call `fetchResults` and pass it the `searchQuery`
-//   fetchResults(searchQuery);
+function handleSubmit(event) {
+    // prevent page from reloading when form is submitted
+  event.preventDefault();
+  // get the value of the input field
+  const input = document.querySelector('.searchForm-input').value;
+  // remove whitespace from the input
+  const searchQuery = input.trim();
+  // call `fetchResults` and pass it the `searchQuery`
+  fetchResults(searchQuery);
   
-//   // test getting images
-//   fetchImage(searchQuery);
-// }
+  // test getting images
+  fetchImage(searchQuery);
+}
 
 function fetchImage(searchQuery){
-    fetch(`http://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=India`)
-      .then(function(resp) {
-        console.log(resp);
-        return resp.json()
-      }).then(function(data) {
-          console.log(data);
+  // http://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=India
+  const endpoint = `https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=India&origin=*`;
+    fetch(endpoint)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
       })};
 
 function fetchResults(searchQuery) {
@@ -33,6 +33,7 @@ function fetchResults(searchQuery) {
   		.then(response => response.json())
   		.then(data => {
   	  	const results = data.query.search;
+        console.log(results);
         displayResults(results);
 		})
     .catch(() => console.log('An error occurred'));
@@ -59,8 +60,7 @@ function displayResults(results) {
   });
 }
 
-// const form = document.querySelector('.searchForm');
-// form.addEventListener('submit', handleSubmit);
+
 
 // // our default array of dreams
 // const dreams = [
