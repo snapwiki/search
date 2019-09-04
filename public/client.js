@@ -10,14 +10,13 @@ function handleSubmit(event) {
   const searchQuery = input.trim();
   fetchResults(searchQuery);
 }
-
+// more on using wikipedia action=query https://www.mediawiki.org/wiki/API:Query
 function fetchImage(searchQuery){
   const endpoint = `https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=${searchQuery}&origin=*`;
     fetch(endpoint)
       .then(response => response.json())
       .then(data => {
         const result = data.query.pages;
-        console.log('result', result);
         const id = Object.keys(result)[0];
         if(result[id].original){
           const imgURL = result[id].original.source;
