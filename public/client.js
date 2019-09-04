@@ -10,7 +10,8 @@ function handleSubmit(event) {
   const searchQuery = input.trim();
   fetchResults(searchQuery);
 }
-// more on using wikipedia action=query https://www.mediawiki.org/wiki/API:Query
+
+// grab the image from the first search resut
 function fetchImage(searchQuery){
   const endpoint = `https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=${searchQuery}&origin=*`;
     fetch(endpoint)
@@ -25,25 +26,27 @@ function fetchImage(searchQuery){
         }
       })};
 
+// more on using wikipedia action=query https://www.mediawiki.org/wiki/API:Query
 function fetchResults(searchQuery) {
 	  const endpoint = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${searchQuery}`;
   	fetch(endpoint)
   		.then(response => response.json())
   		.then(data => {
   	  	const results = data.query.search;
-        console.log(results);
         fetchImage(searchQuery);
         displayResults(results);
 		})
     .catch(() => console.log('An error occurred'));
 }
 
+// add the image from wikipedia
 function displayImage(imageURL){
   const searchResults = document.querySelector('.searchResults');
   searchResults.insertAdjacentHTML('beforeend',
                                   `<img src="${imageURL}"/>`);
 }
 
+// display resuts on the page
 function displayResults(results) {
   const searchResults = document.querySelector('.searchResults');
   searchResults.innerHTML = '';
