@@ -13,7 +13,7 @@ function handleSubmit(event) {
 
 // grab the image from the first search resut
 function fetchImage(searchQuery){
-  const endpoint = `https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=${searchQuery}&origin=*`;
+  const endpoint = `https://snapwiki.miraheze.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=${searchQuery}&origin=*`;
     fetch(endpoint)
       .then(response => response.json())
       .then(data => {
@@ -28,7 +28,7 @@ function fetchImage(searchQuery){
 
 // more on using wikipedia action=query https://www.mediawiki.org/wiki/API:Query
 function fetchResults(searchQuery) {
-	  const endpoint = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${searchQuery}`;
+	  const endpoint = `https://snapwiki.miraheze.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${searchQuery}`;
   	fetch(endpoint)
   		.then(response => response.json())
   		.then(data => {
@@ -51,7 +51,7 @@ function displayResults(results) {
   const searchResults = document.querySelector('.searchResults');
   searchResults.innerHTML = '';
   const result = results[0];
-  const url = encodeURI(`https://en.wikipedia.org/wiki/${result.title}`);
+  const url = encodeURI(`https://snapwiki.miraheze.org/wiki/${result.title}`);
 
    searchResults.insertAdjacentHTML('beforeend',
     `<div class="resultItem">
