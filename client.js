@@ -1,6 +1,3 @@
-// client-side js
-// run by the browser each time your view template is loaded
-
 const form = document.querySelector('.searchForm');
 form.addEventListener('submit', handleSubmit);
 
