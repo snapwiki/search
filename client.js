@@ -25,7 +25,7 @@ function fetchImage(searchQuery){
 
 // more on using wikipedia action=query https://www.mediawiki.org/wiki/API:Query
 function fetchResults(searchQuery) {
-	  const endpoint = `https://snapwiki.miraheze.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${searchQuery}`;
+	  const endpoint = `https://snapwiki.miraheze.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=max&srsearch=${searchQuery}`;
   	fetch(endpoint)
   		.then(response => response.json())
   		.then(data => {
